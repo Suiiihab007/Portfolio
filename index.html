@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nurul Azim Shihab | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+    :root {
+      --light: #E8E6E0;
+      --dark:  #0D0D0D;
+      --accent:#1A1A1A;
+      --muted: #8A8780;
+      --tag-bg:#D4D1CA;
+      --split: 42%;
+    }
+
+    html { scroll-behavior:smooth; font-size:16px; }
+
+    body {
+      font-family:'DM Sans', sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 72px;
+    }
+
+    .nav-logo {
+      font-family:'Syne', sans-serif;
+      font-weight:800;
+      font-size:1.15rem;
+      letter-spacing:-0.03em;
+      color: var(--dark);
+      text-decoration:none;
+      width: var(--split);
+    }
+
+    .nav-links {
+      display:flex;
+      align-items:center;
+      gap:36px;
+      list-style:none;
+      flex:1;
+      justify-content:center;
+    }
+
+    .nav-links a {
+      font-size:0.82rem;
+      font-weight:500;
+      letter-spacing:0.04em;
+      text-decoration:none;
+      color: rgba(255,255,255,0.65);
+      transition:color 0.2s;
+    }
+    .nav-links a:hover { color:#fff; }
+
+    .nav-cta {
+      background:#fff;
+      color: var(--dark) !important;
+      padding:8px 20px;
+      border-radius:100px;
+      font-weight:600 !important;
+      font-size:0.78rem !important;
+      letter-spacing:0.05em !important;
+      transition:background 0.2s, color 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--light) !important; }
+
+    /* ─── HERO SPLIT ─── */
+    #home {
+      height: 100vh;
+      display: grid;
+      grid-template-columns: var(--split) 1fr;
+      position: relative;
+    }
+
+    .hero-left {
+      background: var(--light);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 52px 64px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-tag {
+      font-size:0.72rem;
+      font-weight:500;
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+      color: var(--muted);
+      margin-bottom:16px;
+    }
+
+    .hero-name {
+      font-family:'Syne', sans-serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight:800;
+      line-height:0.95;
+      letter-spacing:-0.04em;
+      color: var(--dark);
+      margin-bottom:24px;
+    }
+
+    .hero-subtitle {
+      font-size:0.95rem;
+      font-weight:300;
+      color: var(--muted);
+      letter-spacing:0.02em;
+      margin-bottom:48px;
+    }
+
+    .hero-subtitle span {
+      font-style:italic;
+      font-weight:400;
+      color: var(--accent);
+    }
+
+    .hero-socials {
+      display:flex;
+      gap:12px;
+    }
+
+    .social-btn {
+      width:46px; height:46px;
+      border-radius:50%;
+      background: var(--accent);
+      display:flex; align-items:center; justify-content:center;
+      text-decoration:none;
+      transition:transform 0.22s, background 0.22s;
+    }
+    .social-btn:hover { transform:translateY(-3px); background:#333; }
+    .social-btn svg { width:18px; height:18px; fill:#fff; }
+
+    /* diagonal divider */
+    .hero-right {
+      background: var(--dark);
+      position: relative;
+      overflow: hidden;
+      clip-path: polygon(6% 0, 100% 0, 100% 100%, 0% 100%);
+    }
+
+    .hero-img {
+      width:100%; height:100%;
+      object-fit:cover;
+      object-position:top center;
+      opacity:0.85;
+      filter:grayscale(15%);
+    }
+
+    .hero-img-fallback {
+      width:100%; height:100%;
+      display:flex; align-items:center; justify-content:center;
+      background: linear-gradient(160deg, #1a1a1a 0%, #2a2a2a 100%);
+    }
+
+    .hero-monogram {
+      font-family:'Syne', sans-serif;
+      font-size:9rem;
+      font-weight:800;
+      color:rgba(255,255,255,0.06);
+      letter-spacing:-0.08em;
+      user-select:none;
+      position:absolute;
+      bottom:48px; right:40px;
+      line-height:1;
+    }
+
+    /* scroll indicator */
+    .scroll-hint {
+      position:absolute;
+      bottom:30px; left:52px;
+      display:flex; align-items:center; gap:10px;
+      font-size:0.68rem;
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+      color: var(--muted);
+    }
+    .scroll-line {
+      width:32px; height:1px;
+      background: var(--muted);
+    }
+
+    /* ─── SECTION BASE ─── */
+    section { padding:100px 52px; }
+
+    .sec-label {
+      font-size:0.68rem;
+      font-weight:500;
+      letter-spacing:0.15em;
+      text-transform:uppercase;
+      color: var(--muted);
+      margin-bottom:14px;
+    }
+
+    .sec-title {
+      font-family:'Syne', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight:800;
+      letter-spacing:-0.035em;
+      line-height:1.05;
+      color: var(--dark);
+      margin-bottom:60px;
+    }
+
+    /* ─── ABOUT ─── */
+    #about { background: var(--dark); color:#fff; }
+    #about .sec-label { color:rgba(255,255,255,0.35); }
+    #about .sec-title { color:#fff; }
+
+    .about-grid {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:80px;
+      align-items:start;
+      max-width:1000px;
+    }
+
+    .about-text p {
+      font-size:1rem;
+      font-weight:300;
+      line-height:1.85;
+      color:rgba(255,255,255,0.6);
+      margin-bottom:18px;
+    }
+    .about-text strong { color:#fff; font-weight:500; }
+
+    .about-stats {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:2px;
+    }
+
+    .stat-box {
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.06);
+      padding:28px 24px;
+      transition:background 0.2s;
+    }
+    .stat-box:hover { background:rgba(255,255,255,0.07); }
+
+    .stat-num {
+      font-family:'Syne', sans-serif;
+      font-size:2rem;
+      font-weight:800;
+      color:#fff;
+      letter-spacing:-0.04em;
+    }
+    .stat-desc {
+      font-size:0.72rem;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,0.3);
+      margin-top:6px;
+    }
+
+    /* ─── SKILLS ─── */
+    #skills { background: var(--light); }
+
+    .skills-grid {
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:2px;
+      max-width:1000px;
+    }
+
+    .skill-item {
+      background:#fff;
+      padding:32px 28px;
+      border:1px solid #e0ddd7;
+      transition:background 0.2s, transform 0.22s;
+      cursor:default;
+    }
+    .skill-item:hover { background:var(--dark); transform:translateY(-2px); }
+    .skill-item:hover .skill-name { color:#fff; }
+    .skill-item:hover .skill-level { color:rgba(255,255,255,0.4); }
+    .skill-item:hover .bar-track { background:rgba(255,255,255,0.08); }
+    .skill-item:hover .bar-fill { background:#fff; }
+
+    .skill-name {
+      font-family:'Syne', sans-serif;
+      font-size:1.05rem;
+      font-weight:700;
+      color: var(--dark);
+      margin-bottom:6px;
+      transition:color 0.2s;
+    }
+    .skill-level {
+      font-size:0.7rem;
+      letter-spacing:0.1em;
+      text-transform:uppercase;
+      color: var(--muted);
+      margin-bottom:20px;
+      transition:color 0.2s;
+    }
+    .bar-track {
+      width:100%; height:2px;
+      background:#e0ddd7;
+      transition:background 0.2s;
+    }
+    .bar-fill {
+      height:2px;
+      background: var(--dark);
+      transition: background 0.2s;
+    }
+    .skill-pct {
+      font-family:'Syne', sans-serif;
+      font-size:0.8rem;
+      font-weight:700;
+      color: var(--muted);
+      float:right;
+      margin-bottom:8px;
+    }
+
+    /* ─── PROJECTS ─── */
+    #projects { background:var(--dark); }
+    #projects .sec-label { color:rgba(255,255,255,0.35); }
+    #projects .sec-title { color:#fff; }
+
+    .proj-card {
+      max-width:700px;
+      border:1px solid rgba(255,255,255,0.08);
+      overflow:hidden;
+      transition:border-color 0.3s;
+    }
+    .proj-card:hover { border-color:rgba(255,255,255,0.22); }
+
+    .proj-img {
+      width:100%; height:260px;
+      object-fit:cover;
+      display:block;
+      filter:grayscale(30%);
+      transition:filter 0.3s;
+    }
+    .proj-card:hover .proj-img { filter:grayscale(0%); }
+
+    .proj-fallback {
+      width:100%; height:260px;
+      background:linear-gradient(135deg,#1e1e1e,#2e2e2e);
+      display:flex; align-items:center; justify-content:center;
+      flex-direction:column; gap:12px;
+    }
+    .proj-fallback-icon { font-size:3rem; }
+    .proj-fallback-title {
+      font-family:'Syne', sans-serif;
+      font-weight:800;
+      color:rgba(255,255,255,0.15);
+      font-size:1.5rem;
+      letter-spacing:0.1em;
+      text-transform:uppercase;
+    }
+
+    .proj-body { padding:36px; }
+
+    .proj-tags {
+      display:flex; gap:8px; flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+    .proj-tag {
+      font-size:0.68rem;
+      font-weight:500;
+      letter-spacing:0.1em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,0.4);
+      border:1px solid rgba(255,255,255,0.12);
+      padding:4px 12px;
+      border-radius:100px;
+    }
+
+    .proj-name {
+      font-family:'Syne', sans-serif;
+      font-size:1.6rem;
+      font-weight:800;
+      color:#fff;
+      letter-spacing:-0.03em;
+      margin-bottom:10px;
+    }
+    .proj-desc {
+      font-size:0.9rem;
+      font-weight:300;
+      color:rgba(255,255,255,0.5);
+      line-height:1.75;
+      margin-bottom:28px;
+    }
+
+    .proj-btns { display:flex; gap:12px; }
+    .btn-primary {
+      background:#fff;
+      color: var(--dark);
+      font-size:0.78rem;
+      font-weight:600;
+      letter-spacing:0.06em;
+      text-transform:uppercase;
+      padding:12px 24px;
+      text-decoration:none;
+      border-radius:2px;
+      transition:background 0.2s, color 0.2s;
+    }
+    .btn-primary:hover { background:#e0ddd7; }
+    .btn-ghost {
+      background:transparent;
+      color:rgba(255,255,255,0.5);
+      font-size:0.78rem;
+      font-weight:500;
+      letter-spacing:0.06em;
+      text-transform:uppercase;
+      padding:12px 24px;
+      text-decoration:none;
+      border:1px solid rgba(255,255,255,0.14);
+      border-radius:2px;
+      transition:border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { border-color:rgba(255,255,255,0.4); color:#fff; }
+
+    /* ─── PROFILES ─── */
+    #profiles { background: var(--light); }
+
+    .profiles-grid {
+      display:flex;
+      gap:2px;
+      max-width:600px;
+    }
+
+    .profile-card {
+      flex:1;
+      background:#fff;
+      border:1px solid #e0ddd7;
+      padding:40px 32px;
+      text-decoration:none;
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+      transition:background 0.25s, transform 0.22s;
+    }
+    .profile-card:hover { background: var(--dark); transform:translateY(-4px); }
+    .profile-card:hover .profile-platform { color:rgba(255,255,255,0.4); }
+    .profile-card:hover .profile-handle { color:#fff; }
+    .profile-card:hover .profile-icon-wrap { background:#fff; }
+    .profile-card:hover .profile-icon-wrap svg { fill: var(--dark); }
+
+    .profile-icon-wrap {
+      width:52px; height:52px;
+      border-radius:10px;
+      background: var(--dark);
+      display:flex; align-items:center; justify-content:center;
+      transition:background 0.25s;
+    }
+    .profile-icon-wrap svg { fill:#fff; width:22px; height:22px; transition:fill 0.25s; }
+
+    .profile-platform {
+      font-size:0.7rem;
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+      color: var(--muted);
+      transition:color 0.25s;
+    }
+    .profile-handle {
+      font-family:'Syne', sans-serif;
+      font-size:1rem;
+      font-weight:700;
+      color: var(--dark);
+      transition:color 0.25s;
+    }
+
+    /* ─── CONTACT ─── */
+    #contact { background: var(--dark); }
+    #contact .sec-label { color:rgba(255,255,255,0.35); }
+    #contact .sec-title { color:#fff; }
+
+    .contact-wrap {
+      max-width:560px;
+    }
+
+    .field-group { margin-bottom:20px; }
+    .field-group label {
+      display:block;
+      font-size:0.7rem;
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,0.35);
+      margin-bottom:8px;
+    }
+    .field-group input,
+    .field-group textarea {
+      width:100%;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.1);
+      color:#fff;
+      font-family:'DM Sans', sans-serif;
+      font-size:0.95rem;
+      font-weight:300;
+      padding:14px 18px;
+      border-radius:2px;
+      outline:none;
+      transition:border-color 0.2s;
+    }
+    .field-group input::placeholder,
+    .field-group textarea::placeholder { color:rgba(255,255,255,0.2); }
+    .field-group input:focus,
+    .field-group textarea:focus { border-color:rgba(255,255,255,0.4); }
+    .field-group textarea { resize:none; }
+
+    .contact-btn {
+      width:100%;
+      background:#fff;
+      color: var(--dark);
+      border:none;
+      cursor:pointer;
+      font-family:'Syne', sans-serif;
+      font-weight:700;
+      font-size:0.85rem;
+      letter-spacing:0.1em;
+      text-transform:uppercase;
+      padding:16px;
+      border-radius:2px;
+      transition:background 0.2s;
+      margin-top:8px;
+    }
+    .contact-btn:hover { background:#e0ddd7; }
+
+    .contact-meta {
+      display:flex;
+      gap:40px;
+      margin-top:48px;
+      flex-wrap:wrap;
+    }
+    .contact-meta-item {
+      font-size:0.72rem;
+      letter-spacing:0.1em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,0.25);
+    }
+    .contact-meta-item span {
+      display:block;
+      color:rgba(255,255,255,0.6);
+      font-weight:400;
+      margin-top:4px;
+      text-transform:none;
+      letter-spacing:0.01em;
+      font-size:0.85rem;
+    }
+
+    #success-msg { color:#6ee7b7; font-size:0.85rem; margin-top:12px; display:none; }
+    #error-msg   { color:#fca5a5; font-size:0.85rem; margin-top:12px; display:none; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background:var(--dark);
+      border-top:1px solid rgba(255,255,255,0.06);
+      padding:32px 52px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:16px;
+    }
+    footer p {
+      font-size:0.75rem;
+      color:rgba(255,255,255,0.2);
+      letter-spacing:0.04em;
+    }
+    footer p strong { color:rgba(255,255,255,0.45); font-weight:500; }
+    .footer-links { display:flex; gap:28px; }
+    .footer-links a {
+      font-size:0.75rem;
+      color:rgba(255,255,255,0.2);
+      text-decoration:none;
+      letter-spacing:0.06em;
+      transition:color 0.2s;
+    }
+    .footer-links a:hover { color:rgba(255,255,255,0.6); }
+
+    /* ─── HAMBURGER ─── */
+    .burger {
+      display:none;
+      flex-direction:column;
+      gap:5px;
+      cursor:pointer;
+      padding:4px;
+      background:none; border:none;
+    }
+    .burger span {
+      display:block;
+      width:22px; height:1.5px;
+      background:#fff;
+      transition:all 0.3s;
+    }
+
+    /* ─── MOBILE ─── */
+    @media(max-width:768px){
+      :root { --split:100%; }
+      nav { padding:0 24px; }
+      .nav-logo { width:auto; }
+      .nav-links { display:none; }
+      .burger { display:flex; }
+
+      #home { grid-template-columns:1fr; height:auto; min-height:100vh; }
+      .hero-left { padding:120px 28px 48px; }
+      .hero-right { display:none; }
+
+      section { padding:72px 28px; }
+      .about-grid { grid-template-columns:1fr; gap:48px; }
+      .skills-grid { grid-template-columns:1fr 1fr; }
+      .profiles-grid { flex-direction:column; max-width:100%; }
+      footer { flex-direction:column; align-items:flex-start; }
+
+      nav { background:rgba(13,13,13,0.95); backdrop-filter:blur(12px); }
+    }
+
+    /* ─── TYPED ─── */
+    .typed-cursor::after {
+      content:'|';
+      animation:blink 0.75s infinite;
+      color:rgba(255,255,255,0.3);
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    /* ─── FADE IN ─── */
+    .reveal {
+      opacity:0;
+      transform:translateY(30px);
+      transition:opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ NAV ═══ -->
+  <nav>
+    <a href="#home" class="nav-logo" style="color:#fff;">NAS<span style="opacity:0.3">.</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About me</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Portfolio</a></li>
+      <li><a href="#profiles">Profiles</a></li>
+      <li><a href="#contact" class="nav-cta">Contact Me</a></li>
+    </ul>
+    <button class="burger" id="burger" aria-label="Menu">
+      <span id="b1"></span><span id="b2"></span><span id="b3"></span>
+    </button>
+  </nav>
+
+
+  <!-- ═══ HERO ═══ -->
+  <section id="home">
+    <div class="hero-left">
+      <p class="hero-tag">Hi, I am</p>
+      <h1 class="hero-name">Nurul Azim<br/>Shihab</h1>
+      <p class="hero-subtitle">
+        <span id="typed-text" class="typed-cursor"></span>
+      </p>
+      <div class="hero-socials">
+        <!-- GitHub -->
+        <a href="https://github.com/Suiiihab007" target="_blank" class="social-btn" title="GitHub">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+          </svg>
+        </a>
+        <!-- Codeforces -->
+        <a href="https://codeforces.com/profile/vintage_thor" target="_blank" class="social-btn" title="Codeforces">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4.5 7.5A1.5 1.5 0 0 1 6 6h2a1.5 1.5 0 0 1 1.5 1.5v9A1.5 1.5 0 0 1 8 18H6a1.5 1.5 0 0 1-1.5-1.5v-9zm7-4A1.5 1.5 0 0 1 13 2h2a1.5 1.5 0 0 1 1.5 1.5v13A1.5 1.5 0 0 1 15 18h-2a1.5 1.5 0 0 1-1.5-1.5V3.5zm7 7A1.5 1.5 0 0 1 20 9h2a1.5 1.5 0 0 1 1.5 1.5v6A1.5 1.5 0 0 1 22 18h-2a1.5 1.5 0 0 1-1.5-1.5v-6z"/>
+          </svg>
+        </a>
+        <!-- Email -->
+        <a href="#contact" class="social-btn" title="Contact">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
+          </svg>
+        </a>
+      </div>
+      <div class="scroll-hint">
+        <div class="scroll-line"></div>
+        <span>Scroll</span>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <img
+        src="shihab.jpeg"
+        alt="Nurul Azim Shihab"
+        class="hero-img"
+        onerror="this.style.display='none';document.querySelector('.hero-img-fallback').style.display='flex';"
+      />
+      <div class="hero-img-fallback" style="display:none;">
+        <div class="hero-monogram">NAS</div>
+      </div>
+      <div class="hero-monogram">NAS</div>
+    </div>
+  </section>
+
+
+  <!-- ═══ ABOUT ═══ -->
+  <section id="about">
+    <p class="sec-label reveal">Who I Am</p>
+    <h2 class="sec-title reveal">About Me</h2>
+    <div class="about-grid reveal">
+      <div class="about-text">
+        <p>My name is <strong>Nurul Azim Shihab</strong>. I am a student of <strong>Computer Science & Engineering</strong>, Batch <strong>57</strong>, at <strong>International Islamic University Chittagong (IIUC)</strong>. I am from <strong>Chittagong, Bangladesh</strong>.</p>
+        <p>I started my programming journey with <strong>C and C++</strong>. I enjoy building web projects and I am currently sharpening my skills in <strong>HTML, CSS, and JavaScript</strong>.</p>
+        <p>I also enjoy competitive programming and problem solving on platforms like <strong>Codeforces</strong>. My goal is to become a skilled software engineer and contribute to meaningful projects.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-box">
+          <p class="stat-num">5+</p>
+          <p class="stat-desc">Languages Known</p>
+        </div>
+        <div class="stat-box">
+          <p class="stat-num">1+</p>
+          <p class="stat-desc">Projects Done</p>
+        </div>
+        <div class="stat-box">
+          <p class="stat-num">IIUC</p>
+          <p class="stat-desc">University</p>
+        </div>
+        <div class="stat-box">
+          <p class="stat-num">B57</p>
+          <p class="stat-desc">CSE Batch 57</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ SKILLS ═══ -->
+  <section id="skills">
+    <p class="sec-label reveal">What I Know</p>
+    <h2 class="sec-title reveal">My Skills</h2>
+    <div class="skills-grid reveal">
+
+      <div class="skill-item">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;">
+          <p class="skill-name">C</p>
+          <p class="skill-pct">70%</p>
+        </div>
+        <p class="skill-level">Intermediate</p>
+        <div class="bar-track"><div class="bar-fill" style="width:70%"></div></div>
+      </div>
+
+      <div class="skill-item">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;">
+          <p class="skill-name">C++</p>
+          <p class="skill-pct">60%</p>
+        </div>
+        <p class="skill-level">Intermediate</p>
+        <div class="bar-track"><div class="bar-fill" style="width:60%"></div></div>
+      </div>
+
+      <div class="skill-item">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;">
+          <p class="skill-name">HTML</p>
+          <p class="skill-pct">75%</p>
+        </div>
+        <p class="skill-level">Good</p>
+        <div class="bar-track"><div class="bar-fill" style="width:75%"></div></div>
+      </div>
+
+      <div class="skill-item">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;">
+          <p class="skill-name">CSS</p>
+          <p class="skill-pct">65%</p>
+        </div>
+        <p class="skill-level">Intermediate</p>
+        <div class="bar-track"><div class="bar-fill" style="width:65%"></div></div>
+      </div>
+
+      <div class="skill-item">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;">
+          <p class="skill-name">JavaScript</p>
+          <p class="skill-pct">45%</p>
+        </div>
+        <p class="skill-level">Beginner</p>
+        <div class="bar-track"><div class="bar-fill" style="width:45%"></div></div>
+      </div>
+
+      <div class="skill-item">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;">
+          <p class="skill-name">Problem Solving</p>
+          <p class="skill-pct">60%</p>
+        </div>
+        <p class="skill-level">Intermediate</p>
+        <div class="bar-track"><div class="bar-fill" style="width:60%"></div></div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══ PROJECTS ═══ -->
+  <section id="projects">
+    <p class="sec-label reveal">What I Built</p>
+    <h2 class="sec-title reveal">My Projects</h2>
+    <div class="proj-card reveal">
+      <img
+        src="kick.jpg"
+        alt="Kickzone"
+        class="proj-img"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+      />
+      <div class="proj-fallback" style="display:none;">
+        <div class="proj-fallback-icon">⚽</div>
+        <p class="proj-fallback-title">Kickzone</p>
+      </div>
+      <div class="proj-body">
+        <div class="proj-tags">
+          <span class="proj-tag">HTML</span>
+          <span class="proj-tag">CSS</span>
+          <span class="proj-tag">JavaScript</span>
+        </div>
+        <h3 class="proj-name">Kickzone</h3>
+        <p class="proj-desc">A football-themed web project featuring a clean and responsive layout. Built with HTML, CSS, and JavaScript — a solid first project showcasing front-end fundamentals.</p>
+        <div class="proj-btns">
+          <a href="https://suiiihab007.github.io/Kickzone-/" target="_blank" class="btn-primary">Live Demo →</a>
+          <a href="https://github.com/Suiiihab007" target="_blank" class="btn-ghost">GitHub →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ PROFILES ═══ -->
+  <section id="profiles">
+    <p class="sec-label reveal">Find Me Online</p>
+    <h2 class="sec-title reveal">My Profiles</h2>
+    <div class="profiles-grid reveal">
+
+      <a href="https://github.com/Suiiihab007" target="_blank" class="profile-card">
+        <div class="profile-icon-wrap">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+          </svg>
+        </div>
+        <p class="profile-platform">GitHub</p>
+        <p class="profile-handle">Suiiihab007</p>
+      </a>
+
+      <a href="https://codeforces.com/profile/vintage_thor" target="_blank" class="profile-card">
+        <div class="profile-icon-wrap">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4.5 7.5A1.5 1.5 0 0 1 6 6h2a1.5 1.5 0 0 1 1.5 1.5v9A1.5 1.5 0 0 1 8 18H6a1.5 1.5 0 0 1-1.5-1.5v-9zm7-4A1.5 1.5 0 0 1 13 2h2a1.5 1.5 0 0 1 1.5 1.5v13A1.5 1.5 0 0 1 15 18h-2a1.5 1.5 0 0 1-1.5-1.5V3.5zm7 7A1.5 1.5 0 0 1 20 9h2a1.5 1.5 0 0 1 1.5 1.5v6A1.5 1.5 0 0 1 22 18h-2a1.5 1.5 0 0 1-1.5-1.5v-6z"/>
+          </svg>
+        </div>
+        <p class="profile-platform">Codeforces</p>
+        <p class="profile-handle">vintage_thor</p>
+      </a>
+
+    </div>
+  </section>
+
+
+  <!-- ═══ CONTACT ═══ -->
+  <section id="contact">
+    <p class="sec-label reveal">Get In Touch</p>
+    <h2 class="sec-title reveal">Contact Me</h2>
+    <div class="contact-wrap reveal">
+      <div class="field-group">
+        <label>Your Name</label>
+        <input id="c-name" type="text" placeholder="Enter your name"/>
+      </div>
+      <div class="field-group">
+        <label>Your Email</label>
+        <input id="c-email" type="email" placeholder="Enter your email"/>
+      </div>
+      <div class="field-group">
+        <label>Message</label>
+        <textarea id="c-msg" rows="5" placeholder="Write your message..."></textarea>
+      </div>
+      <button class="contact-btn" onclick="sendMessage()">Send Message</button>
+      <p id="success-msg">✓ Message sent successfully!</p>
+      <p id="error-msg">⚠ Please fill all fields first.</p>
+
+      <div class="contact-meta">
+        <div class="contact-meta-item">Location<span>Chittagong, Bangladesh</span></div>
+        <div class="contact-meta-item">University<span>IIUC — CSE Batch 57</span></div>
+        <div class="contact-meta-item">GitHub<span>Suiiihab007</span></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <p>Made by <strong>Nurul Azim Shihab</strong> — CSE Student, IIUC Chittagong</p>
+    <div class="footer-links">
+      <a href="https://github.com/Suiiihab007" target="_blank">GitHub</a>
+      <a href="https://codeforces.com/profile/vintage_thor" target="_blank">Codeforces</a>
+      <a href="https://suiiihab007.github.io/Kickzone-/" target="_blank">Kickzone</a>
+    </div>
+  </footer>
+
+
+  <script>
+    // ─── Typed ───
+    const phrases = ["CSE Student at IIUC 🎓","Web Developer (Learning) 💻","Problem Solver 🧩","From Chittagong, BD 🇧🇩"];
+    let pi=0,ci=0,del=false;
+    function type(){
+      const el=document.getElementById("typed-text");
+      const w=phrases[pi];
+      el.textContent=del?w.substring(0,ci--):w.substring(0,ci++);
+      if(!del&&ci===w.length+1){del=true;setTimeout(type,1500);return;}
+      if(del&&ci===0){del=false;pi=(pi+1)%phrases.length;}
+      setTimeout(type,del?50:90);
+    }
+    type();
+
+    // ─── Reveal on scroll ───
+    const obs=new IntersectionObserver(e=>{
+      e.forEach(el=>{if(el.isIntersecting)el.target.classList.add("visible");});
+    },{threshold:0.12});
+    document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
+
+    // ─── Active nav ───
+    window.addEventListener("scroll",()=>{
+      let cur="";
+      document.querySelectorAll("section").forEach(s=>{
+        if(window.scrollY>=s.offsetTop-100)cur=s.id;
+      });
+      document.querySelectorAll(".nav-links a").forEach(a=>{
+        a.style.color=a.getAttribute("href")==="#"+cur?"#fff":"";
+      });
+    });
+
+    // ─── Burger ───
+    const burger=document.getElementById("burger");
+    let menuOpen=false;
+    burger.addEventListener("click",()=>{
+      menuOpen=!menuOpen;
+      // simple mobile toggle — append inline menu
+      let m=document.getElementById("mob-nav");
+      if(!m){
+        m=document.createElement("div");
+        m.id="mob-nav";
+        m.style.cssText="position:fixed;top:72px;left:0;right:0;background:#0D0D0D;padding:24px 28px;display:flex;flex-direction:column;gap:20px;z-index:99;";
+        ["#about","#skills","#projects","#profiles","#contact"].forEach(h=>{
+          const a=document.createElement("a");
+          a.href=h; a.textContent=h.replace("#","").replace(/^\w/,c=>c.toUpperCase());
+          a.style.cssText="color:rgba(255,255,255,0.7);text-decoration:none;font-size:1.1rem;font-family:Syne,sans-serif;font-weight:600;";
+          a.onclick=()=>{m.remove();menuOpen=false;};
+          m.appendChild(a);
+        });
+        document.body.appendChild(m);
+      } else { m.remove(); }
+    });
+
+    // ─── Contact ───
+    function sendMessage(){
+      const n=document.getElementById("c-name").value.trim();
+      const e=document.getElementById("c-email").value.trim();
+      const m=document.getElementById("c-msg").value.trim();
+      const ok=document.getElementById("success-msg");
+      const err=document.getElementById("error-msg");
+      if(!n||!e||!m){
+        err.style.display="block";ok.style.display="none";
+        setTimeout(()=>err.style.display="none",3000);return;
+      }
+      ok.style.display="block";err.style.display="none";
+      document.getElementById("c-name").value="";
+      document.getElementById("c-email").value="";
+      document.getElementById("c-msg").value="";
+      setTimeout(()=>ok.style.display="none",3000);
+    }
+  </script>
+</body>
+</html>
